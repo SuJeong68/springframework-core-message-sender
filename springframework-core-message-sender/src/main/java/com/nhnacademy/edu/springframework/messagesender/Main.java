@@ -9,7 +9,7 @@ public class Main {
         User user = new User("email@google.com", "010-1234-5678");
         String message = "Hello!!";
 
-        new MessageSendService(new SmsMessageSender()).doSendMessage(user, message);
-        new MessageSendService(new EmailMessageSender()).doSendMessage(user, message);
+//        new MessageSendService(new SmsMessageSender()).doSendMessage(user, message);
+//        new MessageSendService(new EmailMessageSender()).doSendMessage(user, message);
     }
 }
