@@ -1,6 +1,7 @@
 package com.nhnacademy.edu.springframework.messagesender.service;
 
 import com.nhnacademy.edu.springframework.messagesender.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 public class MessageSendService {
@@ -15,8 +16,16 @@ public class MessageSendService {
         this.messageSender = messageSender;
     }
 
-    public void doSendMessage(User user, String message) {
+    public void setMessageSender(MessageSender messageSender) {
+        this.messageSender = messageSender;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean doSendMessage(User user, String message) {
         System.out.println("From : " + this.name);
-        this.messageSender.sendMessage(user, message);
+        return this.messageSender.sendMessage(user, message);
     }
 }
