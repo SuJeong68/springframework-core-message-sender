@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 public class MessageSendService {
+
     private MessageSender messageSender;
 
     @Value("${from}")
@@ -26,6 +27,7 @@ public class MessageSendService {
 
     public boolean doSendMessage(User user, String message) {
         System.out.println("From : " + this.name);
-        return this.messageSender.sendMessage(user, message);
+        messageSender.sendMessage(user, message);
+        return true;
     }
 }

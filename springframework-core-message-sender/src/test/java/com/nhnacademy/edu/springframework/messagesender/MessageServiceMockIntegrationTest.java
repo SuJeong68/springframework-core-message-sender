@@ -1,9 +1,9 @@
 package com.nhnacademy.edu.springframework.messagesender;
 
 import com.nhnacademy.edu.springframework.messagesender.config.MainConfig;
+import com.nhnacademy.edu.springframework.messagesender.config.ServiceConfig;
 import com.nhnacademy.edu.springframework.messagesender.service.MessageSendService;
 import com.nhnacademy.edu.springframework.messagesender.service.MessageSender;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,10 +14,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {MainConfig.class})
+@ContextConfiguration(classes = {MainConfig.class, ServiceConfig.class})
 public class MessageServiceMockIntegrationTest {
 
+    @Qualifier("smsMessageSendService")
     @InjectMocks /* mock 주입 */
     @Autowired
     private MessageSendService messageSendService;
@@ -25,12 +28,12 @@ public class MessageServiceMockIntegrationTest {
     @Mock
     private MessageSender messageSender;
 
-    @BeforeEach
-    public void init() {}
+//    @BeforeEach
+//    void init() {}
 
     @Test
-    public void testMessageSendService() {
+    void testMessageSendService() {
         boolean actual = messageSendService.doSendMessage(new User("test001", "010-.."), "Integration Test.");
-        Assertions.assertThat(actual).isEqualTo(true);
+        assertThat(actual).isEqualTo(true);
     }
 }
